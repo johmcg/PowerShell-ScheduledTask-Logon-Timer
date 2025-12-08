@@ -18,4 +18,7 @@ $wshell.Popup("1 Minute Remaining", 0, "Timer", 0x1)
 Start-Sleep -Seconds 60
 $wshell.Popup("Time's Up!", 0, "Timer", 0x1)
 
+#Uncomment below to logoff user when time limit is reached.
+#logoff
+
 Exit

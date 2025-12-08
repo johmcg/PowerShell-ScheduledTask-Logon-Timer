@@ -14,3 +14,5 @@ The script operates using a sequence of `Start-Sleep` commands followed by pop-u
 4.  **Time's Up:** The script pauses for the final **1 minute**, then displays the "Time's Up!" notification, and then exits.
 
 Net User command is used to gather last time user logged in which is then stored in a text file in the users folder.
+
+Logging user off the local mach can be enabled by uncommenting "logoff".
