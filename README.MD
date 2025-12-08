@@ -6,7 +6,7 @@ This is a basic PowerShell script that acts as a simple, fixed-duration countdow
 
 ## 💡 How It Works
 
-The script operates using a sequence of `Start-Sleep` commands followed by pop-up notifications. The total countdown is **10 minutes (600 seconds)**.
+The script operates using a sequence of `Start-Sleep` commands followed by pop-up notifications. The total countdown is **30 minutes (1800 seconds)**.
 
 1.  **Initialization:** The script creates the `Wscript.Shell` COM object, stored in the `$wshell` variable, to handle the pop-up windows.
 2.  **5 Minute Warning:** The script pauses execution for **25 minutes**, then displays the first pop-up warning.
