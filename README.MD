@@ -1,6 +1,16 @@
-# ⏳ Simple PowerShell Fixed-Duration Countdown Timer
+# ⏳ PowerShell Session Countdown Timer and Logger
 
-This is a basic PowerShell script that acts as a simple, fixed-duration countdown timer. It is designed to provide pop-up notifications at specific intervals before the time expires. It also logs last login time of selected user.
+This is a PowerShell script designed to function as a fixed-duration countdown timer, providing critical pop-up notifications as a session nears its end. Additionally, it utilizes the `net user` command to log the last login time of the selected user.
+
+---
+
+## 📝 Key Features
+
+* **Fixed 30-Minute Countdown:** Provides time warnings during a 30-minute period.
+* **Pop-up Notifications:** Uses `Wscript.Shell` for non-blocking visual warnings.
+* **Login Logging:** Logs the last login time of the current user via the `net user` command.
+* **Optional Logoff:** Includes an optional line to forcibly log the user off the local machine upon timer expiration.
+* **Silent Execution:** Designed to be launched via an accompanying VBS script to run silently via Windows Task Scheduler.
 
 ---
 
@@ -9,10 +19,37 @@ This is a basic PowerShell script that acts as a simple, fixed-duration countdow
 The script operates using a sequence of `Start-Sleep` commands followed by pop-up notifications. The total countdown is **30 minutes (1800 seconds)**.
 
 1.  **Initialization:** The script creates the `Wscript.Shell` COM object, stored in the `$wshell` variable, to handle the pop-up windows.
-2.  **5 Minute Warning:** The script pauses execution for **25 minutes**, then displays the first pop-up warning.
-3.  **1 Minute Warning:** The script pauses for an additional **4 minutes**, then displays the second warning.
-4.  **Time's Up:** The script pauses for the final **1 minute**, then displays the "Time's Up!" notification, and then exits.
+2.  **5 Minute Warning:** The script pauses execution for **25 minutes (1500 seconds)**, then displays the first pop-up warning.
+3.  **1 Minute Warning:** The script pauses for an additional **4 minutes (240 seconds)**, then displays the second warning.
+4.  **Time's Up:** The script pauses for the final **1 minute (60 seconds)**, displays the "Time's Up!" notification, and then executes any final actions (like logging or logoff) before exiting.
 
-Net User command is used to gather last time user logged in which is then stored in a text file in the users folder.
+### Login Logging
 
-Logging user off the local mach can be enabled by uncommenting "logoff".
+The script executes the **`net user`** command against the current username to gather the **"Last logon"** time. This data is then stored in a text file within the user's home directory for historical tracking.
+
+### Silent Execution
+
+The mention of the **Account Timer vbs script** indicates this PowerShell file should be wrapped in a VBS file when deployed via Windows Task Scheduler. This ensures the PowerShell console window does not appear, allowing the timer pop-ups to be the only visible notification.
+
+---
+
+## 🚀 Deployment and Usage
+
+### Requirements
+
+* Windows Operating System (PowerShell is required).
+* Windows Task Scheduler access for silent execution.
+
+### Execution Steps
+
+1.  **Save Files:** Save the PowerShell code as `SessionTimer.ps1` and ensure you have an accompanying VBS script (e.g., `Account_Timer.vbs`) set up to launch it silently.
+2.  **Configure Logging:** Ensure the directory used for logging has appropriate user permissions.
+3.  **Schedule Task:** Set up a scheduled task to run the VBS script **"At log on"** for the target users.
+
+### Optional Logoff
+
+To enable logging the user off the local machine immediately after the "Time's Up!" notification, ensure the following command is **uncommented** in your script:
+
+```powershell
+# Uncomment the line below to log the user off the machine immediately after the timer expires.
+# logoff

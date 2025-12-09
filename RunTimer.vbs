@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ""AccountTimer.ps1""", 0, True
