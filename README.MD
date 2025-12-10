@@ -53,6 +53,8 @@ To enable logging the user off the local machine immediately after the "Time's U
 ```powershell
 # Uncomment the line below to log the user off the machine immediately after the timer expires.
 # logoff
+```
 
-## Sample XML File
+### Sample XML Import File
+
 A sample xml file is provided to help import this to task scheduler on selected machines. It will need to be updated to fit your needs.
